@@ -130,6 +130,7 @@ export default class Component extends StyleableModel<ComponentProperties> {
       type: '',
       name: '',
       removable: true,
+      aiEnabled: true,
       draggable: true,
       droppable: true,
       badgable: true,
@@ -1250,6 +1251,7 @@ export default class Component extends StyleableModel<ComponentProperties> {
     const { em } = this;
     const model = this;
     const ppfx = (em && em.getConfig().stylePrefix) || '';
+    const isText = this.is('text');
 
     if (!model.get('toolbar') && em) {
       const tb: ToolbarButtonProps[] = [];
@@ -1273,6 +1275,12 @@ export default class Component extends StyleableModel<ComponentProperties> {
         tb.push({
           label: em.getIcon('delete'),
           command: 'tlb-delete',
+        });
+      model.get('aiEnabled') &&
+        isText &&
+        tb.push({
+          label: em.getIcon('aiEnabled'),
+          command: 'ai-enabled-modal',
         });
       model.set('toolbar', tb);
     }

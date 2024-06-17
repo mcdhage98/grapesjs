@@ -18,12 +18,12 @@ export type DraggableDroppableFn = (source: Component, target: Component, index?
 
 export interface AddComponentsOption extends AddOptions, OptionAsDocument {}
 
-interface ComponentWithCheck<C extends Component>{
+interface ComponentWithCheck<C extends Component> {
   new (props: any, opt: ComponentOptions): C;
-  isComponent(node: HTMLElement, opts?: ParseNodeOptions): ComponentDefinitionDefined|undefined|boolean;
+  isComponent(node: HTMLElement, opts?: ParseNodeOptions): ComponentDefinitionDefined | undefined | boolean;
 }
 
-export interface ComponentStackItem<C extends Component = Component, CV extends ComponentView<C> = ComponentView<C>>{
+export interface ComponentStackItem<C extends Component = Component, CV extends ComponentView<C> = ComponentView<C>> {
   id: string;
   model: ComponentWithCheck<C>;
   view: new (opt: any) => CV;
@@ -100,6 +100,11 @@ export interface ComponentProperties {
        containing `some-class` class and `Hello` title, and `column` components. In the case of a function, target and destination components are passed as arguments, return a Boolean to indicate if the drag is possible. Default: `true`
        * @default true
        */
+  aiEnabled?: boolean;
+  /**
+   *
+   * @default true
+   */
   draggable?: boolean | string | DraggableDroppableFn;
   /**
        * Indicates if it's possible to drop other components inside. You can use
