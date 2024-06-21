@@ -1252,6 +1252,7 @@ export default class Component extends StyleableModel<ComponentProperties> {
     const model = this;
     const ppfx = (em && em.getConfig().stylePrefix) || '';
     const isText = this.is('text');
+    const isImage = this.is('image');
 
     if (!model.get('toolbar') && em) {
       const tb: ToolbarButtonProps[] = [];
@@ -1277,7 +1278,7 @@ export default class Component extends StyleableModel<ComponentProperties> {
           command: 'tlb-delete',
         });
       model.get('aiEnabled') &&
-        isText &&
+        (isText || isImage) &&
         tb.push({
           label: em.getIcon('aiEnabled'),
           command: 'ai-enabled-modal',
